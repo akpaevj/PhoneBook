@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div id="progressContainer" class="align-center-screen" style="display: none; width: 80%;">
+        <div>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="100" aria-valuemax="100" style="width: 100%"></div>
+            </div>
+            <div class="row">
+                <label style="width: 100%; text-align: center">Загрузка...</label>
+            </div>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <input id="term" type="text" class="form-control" placeholder="Имя" aria-label="Имя" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button id="searchPhoneBookItems" onclick="searchPhoneBookItems()" class="btn btn-primary" type="button">Найти</button>
+        </div>
+    </div>
+    <table id="data" class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    <label>Имя</label>
+                </th>
+                <th>
+                    <label>E-Mail</label>
+                </th>
+                <th>
+                    <label>Внутренний телефон</label>
+                </th>
+                <th>
+                    <label>Мобильный телефон</label>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    <script>
+        
+        $(async function () {
+            $('#term').keyup(async function (e) {
+                if (e.keyCode === 13 && $('#searchPhoneBookItems').prop('disabled') != true) {
+                    await searchPhoneBookItems();
+                }
+            });
+
+            await getPhoneBookItems('');
+        });
+    </script>
+} 
