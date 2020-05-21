@@ -17,7 +17,7 @@ function loaded() {
         .prop('disabled', false);
 }
 
-function cleanTable() {
+function clearTable() {
     $('#data tbody tr').each(function () {
         $(this).remove();
     });
@@ -54,7 +54,7 @@ async function getPhoneBookItems(term) {
     }
 
     loading();
-    cleanTable();
+    clearTable();
 
     const result = await fetch(url);
 
