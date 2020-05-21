@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Authors>Akpaev Evgeniy</Authors>
     <Company>Akpaev Evgeniy</Company>
-    <Description>Одностраничное приложение для формирования телефонной книги из данных ActiveDirectory</Description>
+    <Description>Одностраничный сайт телефонной книги из данных ActiveDirectory</Description>
     <Copyright>Akpaev Evgeniy</Copyright>
   </PropertyGroup>
 
