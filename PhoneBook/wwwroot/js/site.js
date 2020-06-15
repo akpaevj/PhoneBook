@@ -4,23 +4,21 @@
 // Write your JavaScript code.
 
 function loading() {
-    $('#progressContainer').show();
-    $('#data').hide();
-    $('#searchPhoneBookItems').addClass('disabled')
+    $('#term').addClass('disabled')
             .prop('disabled', true);
 }
 
 function loaded() {
-    $('#progressContainer').hide();
-    $('#data').show();
-    $('#searchPhoneBookItems').removeClass('disabled')
-        .prop('disabled', false);
+    $('#term').removeClass('disabled')
+        .prop('disabled', false)
+        .focus();
 }
 
 function clearTable() {
-    $('#data tbody tr').each(function () {
-        $(this).remove();
-    });
+    //$('#data tbody tr').each(function () {
+    //    $(this).remove();
+    //});
+    $('#data tbody').empty();
 }
 
 function addPhoneBookItem(item) {
@@ -56,18 +54,32 @@ async function getPhoneBookItems(term) {
     loading();
     clearTable();
 
-    const result = await fetch(url);
+    $.ajax({
+        url: url,
+        error: function () {
+            alert("Не удалось получить данные справочника");
+        },
+        success: function (data) {
+            for (let i = 0; i < data.length; i++) {
+                const item = data[i];
+                addPhoneBookItem(item);
+            }
+        },
+        complete: loaded
+    });
 
-    if (result.ok) {
-        const data = await result.json();
+    //const result = await fetch(url);
 
-        for (let i = 0; i < data.length; i++) {
-            const item = data[i];
-            addPhoneBookItem(item);
-        }
-    } else {
-        alert("Не удалось получить данные справочника!");
-    }
+    //if (result.ok) {
+    //    const data = await result.json();
 
-    loaded();
+    //    for (let i = 0; i < data.length; i++) {
+    //        const item = data[i];
+    //        addPhoneBookItem(item);
+    //    }
+    //} else {
+    //    alert("Не удалось получить данные справочника!");
+    //}
+
+    //loaded();
 }
