@@ -15,9 +15,6 @@ function loaded() {
 }
 
 function clearTable() {
-    //$('#data tbody tr').each(function () {
-    //    $(this).remove();
-    //});
     $('#data tbody').empty();
 }
 
